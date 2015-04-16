@@ -1,2 +1,2 @@
-Implemented authorization using devise gem
-Slightly changed database structure
+1)Implemented authorization using devise gem
+2)Slightly changed database structure
