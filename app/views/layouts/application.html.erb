@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CurrencyTracker</title>
+  <%= stylesheet_link_tag "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<header>
+  <h1>CurrencyTracker</h1>
+<% if user_signed_in? %>
+  <nav>
+    <ul>
+      <li><%= link_to "Currencies", currencies_path %></li>
+      <li><%= link_to "Countries", user_countries_path(current_user) %></li>
+      <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+    </ul>
+  </nav>
+</header>
+<% if flash.any? %>
+  <% flash.each do |k, message| %>
+    <%= content_tag :div, message, class: "alert alert-#{k}" %>
+  <% end %>
+<% end %>
+<%= yield %>
+<% else %>
+  <%= yield %>
+<% end %>
+<footer>
+  CurrencyTracker &copy; Copyright 2011 by Smart Enterprises.
+</footer>
+</body>
+</html>

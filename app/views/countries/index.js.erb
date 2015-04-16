@@ -1,0 +1,7 @@
+$('input[data-remote]').click(function(){
+    $.ajax({
+    	type: 'POST',
+      url: '/update_visited/'+this.value,      
+      data: {"user_id": this.checked}
+    });
+})

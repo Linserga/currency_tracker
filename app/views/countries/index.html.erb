@@ -1,0 +1,38 @@
+<section>
+  <div id="visited_countries_chart" class="simple_pie_chart" width='300px' height='100px'>
+    <table>
+      <tr>
+        <th>Visited</th>
+        <td><%= current_user.count_visited %></td>
+      </tr>
+      <tr>
+        <th>Not Visited</th>
+        <td><%= current_user.count_not_visited %></td>
+      </tr>
+    </table>
+  </div>
+
+  <h1>Countries</h1>
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Code</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th>Visited</th>
+    </tr>
+
+  <% @countries.each do |country| %>
+    <tr>
+      <td><%= country.name %></td>
+      <td><%= country.code %></td>
+      <td><%= current_user.visited?(country.id) ? 'Visited' : 'Not Visited' %></td>
+      <td><%= link_to 'Show', country %></td>
+      <td><%= link_to 'Edit', edit_country_path(country) %></td>
+      <td><%= check_box_tag country.id, current_user.id, false, data: {remote: true} %></td>
+    </tr>
+  <% end %>
+  </table>
+</section>
